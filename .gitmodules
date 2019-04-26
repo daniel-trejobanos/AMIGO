@@ -1,0 +1,6 @@
+[submodule "BayesRRcmd"]
+	path = BayesRRcmd
+	url = https://github.com/ctggroup/BayesRRcmd.git
+[submodule "Rcpp"]
+	path = Rcpp
+	url = https://github.com/rohan-shah/Rcpp.git
