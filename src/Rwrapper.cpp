@@ -1,6 +1,6 @@
 /*wrapper functions for BayesRRcmd*/
 #include <Rcpp.h>
-#include "options.h"
+#include "options.hpp"
 #include <string>
 #include "BayesRRm.h"
 #include "DenseBayesRRmz.hpp"
@@ -13,8 +13,7 @@
 #include "raggedsparsemarker.h"
 #include "common.h"
 #include "limitsequencegraph.hpp"
-#include "parallelgraph.h""
-#include "roptionswrapper.h"
+#include "parallelgraph.h"
 
 using namespace Rcpp; 
 
