@@ -1,3 +1,4 @@
 useDynLib(AMIGO, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
-importFrom(Rcpp, evalCpp)
+export(bayesR)
+exportClasses(BROptions)

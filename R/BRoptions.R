@@ -1,3 +1,4 @@
+#' @export
 BROptions <- setClass(
   "BROptions",
   slots = c(

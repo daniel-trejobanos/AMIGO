@@ -1,5 +1,5 @@
 /*wrapper functions for BayesRRcmd*/
-#include <Rcpp.h>
+#include "Rcpp.h"
 #include "options.hpp"
 #include <string>
 #include "BayesRRm.h"
@@ -16,7 +16,7 @@
 #include "parallelgraph.h"
 
 using namespace Rcpp; 
-
+char* package_name = (char*)"AMIGO";
 void processDenseData(Options opt) {
   Data data;
   
@@ -184,29 +184,28 @@ void processSparseData(Options options) {
 
 
 void parseOptions(Options& opt, Rcpp::RObject rOptions){
-  opt.chainLength = rOptions.attr("chainLength");
-  opt.burnin = rOptions.attr("burnin"); 
-  opt.seed = rOptions.attr("seed");
-  opt.numThread = rOptions.attr("numThread");
-  opt.numThreadSpawned = rOptions.attr("numThreadSpawned"); // Default to 0, let TBB do its thing
-  opt.preprocessChunks = rOptions.attr("preprocessChunks");
-  opt.thin = rOptions.attr("thin");  // save every this th sampled value in MCMC
-  opt.S = rOptions.attr("S");    //variance components
-  opt.numGroups = rOptions.attr("numGroups");
-  opt.mS = rOptions.attr("mS");
-  opt.groupFile = rOptions.attr("groupFile");
+  opt.chainLength = static_cast<int>(rOptions.attr("chainLength"));
+//  opt.burnin = rOptions.attr("burnin"); 
+ // opt.seed = rOptions.attr("seed");
+//  opt.numThread = rOptions.attr("numThread");
+//  opt.numThreadSpawned = rOptions.attr("numThreadSpawned"); // Default to 0, let TBB do its thing
+//  opt.preprocessChunks = rOptions.attr("preprocessChunks");
+//  opt.thin = rOptions.attr("thin");  // save every this th sampled value in MCMC
+//  opt.S = rOptions.attr("S");    //variance components
+//  opt.numGroups = rOptions.attr("numGroups");
+//  opt.mS = rOptions.attr("mS");
+//  opt.groupFile = rOptions.attr("groupFile");
   
-  opt.title = rOptions.attr("title");
-  opt.analysisType = rOptions.attr("analysisType");
-  opt.bayesType = rOptions.attr("bayesType"); 
-  opt.phenotypeFile = rOptions.attr("phenotypeFile");
-  opt.bedFile = rOptions.attr("bedFile");
-  opt.mcmcSampleFile = rOptions.attr("mcmcSampleFile"); 
-  opt.optionFile = rOptions.attr("optionFile");
-  opt.compress = rOptions.attr("compress");
-  opt.dataType = rOptions.attr("dataType");
+//  opt.title = rOptions.attr("title");
+//  opt.analysisType = rOptions.attr("analysisType");
+//  opt.bayesType = rOptions.attr("bayesType"); 
+//  opt.phenotypeFile = rOptions.attr("phenotypeFile");
+//  opt.bedFile = rOptions.attr("bedFile");
+//  opt.mcmcSampleFile = rOptions.attr("mcmcSampleFile"); 
+//  opt.optionFile = rOptions.attr("optionFile");
+//  opt.compress = rOptions.attr("compress");
+//  opt.dataType = rOptions.attr("dataType");
 }
-
 
 // [[Rcpp::export]]
 void bayesR(Rcpp::RObject rOptions) {
@@ -238,6 +237,17 @@ void bayesR(Rcpp::RObject rOptions) {
   }
   
 }
+
+
+//RcppExport SEXP _AMIGO_bayesR(SEXP rOptionsSEXP) {
+//BEGIN_RCPP
+//    Rcpp::RNGScope rcpp_rngScope_gen;
+//    Rcpp::traits::input_parameter< Rcpp::RObject >::type rOptions(rOptionsSEXP);
+//    bayesR(rOptions);
+//    return R_NilValue;
+//END_RCPP
+//}
+
 
 
 // You can include R code blocks in C++ files processed with sourceCpp
